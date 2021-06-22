@@ -5,10 +5,6 @@ const CategorySchema = new mongoose.Schema({
         type: String,
         required: [ true, "Category name required"]
     },
-    type: {
-        type: String,
-        required: [ true, "Category type required"],
-    },
     userId: {
         type: String,
         required: [true, "User Id required"]

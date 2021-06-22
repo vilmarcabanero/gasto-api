@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-module.export = mongoose.connect('mongodb+srv://teejae1234:teejae1234@cluster0.wzomk.mongodb.net/budget-tracker-api?retryWrites=true&w=majority', {
+module.export = mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex: true

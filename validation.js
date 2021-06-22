@@ -20,7 +20,7 @@ module.exports.emailExists = (req,res,next) => {
 
 module.exports.categoryExists = (req,res,next) => {
 
-	Category.find({type: req.body.type})
+	Category.find({userId: req.user.id})
 	.then(findResult => {
 		console.log(findResult)
 		let foundCategory = findResult.find(category => {

@@ -4,13 +4,13 @@ const Entry = require('../models/Entry');
 module.exports.addEntry = (req, res) => {
 	// console.log(req.body);
 
-	let {date, time} = req.body
+	let { date, time } = req.body;
 
-	if(!date) {
-		date = new Date()
+	if (!date) {
+		date = new Date();
 	}
-	if(!time) {
-		time = new Date()
+	if (!time) {
+		time = new Date();
 	}
 
 	let newEntry = new Entry({
@@ -20,10 +20,8 @@ module.exports.addEntry = (req, res) => {
 		type: req.body.type,
 		userId: req.user.id,
 		date: date,
-		time: time
+		time: time,
 	});
-
-
 
 	newEntry
 		.save()
@@ -38,8 +36,13 @@ module.exports.addEntry = (req, res) => {
 module.exports.getEntries = (req, res) => {
 	Entry.find({ userId: req.user.id })
 		.then(entries => {
+			const sortedEntries = entries
+				.slice()
+				.sort((a, b) => (b.date > a.date ? 1 : -1));
 
-			res.send(entries.reverse());
+			// console.log(sortedEntries);
+
+			res.send(sortedEntries);
 		})
 		.catch(err => {
 			res.send(err);
@@ -94,6 +97,8 @@ module.exports.updateEntry = (req, res) => {
 		category: req.body.category,
 		amount: req.body.amount,
 		type: req.body.type,
+		date: req.body.date,
+		time: req.body.time,
 		userId: req.user.id,
 	};
 
@@ -123,7 +128,7 @@ module.exports.getEntriesByCategory = (req, res) => {
 	Entry.find({ userId: req.user.id })
 		.then(entries => {
 			const expenses = entries.filter(
-				entry => entry.category.toLowerCase() === category.toLowerCase() 
+				entry => entry.category.toLowerCase() === category.toLowerCase()
 			);
 			res.send(expenses);
 		})

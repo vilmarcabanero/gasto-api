@@ -5,7 +5,7 @@ const router = require('express').Router()
 const categoryController = require('../controllers/categoryController')
 
 
-router.post('/', verify, categoryExists, categoryController.addCategory)
+router.post('/', verify, categoryController.addCategory)
 
 router.get('/', verify, categoryController.getCategories)
 

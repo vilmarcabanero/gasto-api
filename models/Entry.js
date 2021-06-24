@@ -18,6 +18,10 @@ const EntrySchema = new mongoose.Schema(
 			type: Number,
 			required: [true, 'Amount required'],
 		},
+		// balance: {
+		// 	type: Number,
+		// 	required: [true, 'Balance required'],
+		// },
 		type: {
 			type: String,
 			required: [true, 'Entry type required'],

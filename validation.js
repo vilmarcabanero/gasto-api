@@ -27,7 +27,8 @@ module.exports.categoryExists = (req,res,next) => {
 			return category.name.toLowerCase() === req.body.name.toLowerCase()
 		})
 		if(foundCategory){
-			res.send({error: "Category already exists."})
+			console.log(foundCategory)
+			res.send({error: `Category name ${category.name} already exists.`})
 		} else {
 			next()
 		}
